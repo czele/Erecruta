@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30225.117
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Erecruta", "Erecruta.csproj", "{0B96FB02-D746-450D-9ACD-C7B0CFAA92DB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0B96FB02-D746-450D-9ACD-C7B0CFAA92DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B96FB02-D746-450D-9ACD-C7B0CFAA92DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B96FB02-D746-450D-9ACD-C7B0CFAA92DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B96FB02-D746-450D-9ACD-C7B0CFAA92DB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D33EBBB8-1B16-48A9-B6EA-6622681FC022}
+	EndGlobalSection
+EndGlobal

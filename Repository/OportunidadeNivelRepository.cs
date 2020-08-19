@@ -1,0 +1,41 @@
+﻿using Erecruta.Domain;
+using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Threading.Tasks;
+using Dapper;
+
+namespace Erecruta.Repository
+{
+    public class OportunidadeNivelRepository : BaseRepository
+    {
+        public void Incluir(OportunidadeNivel oportunidadeNivel)
+        {
+            string query = @"
+                INSERT INTO [dbo].[OportunidadeNivel]
+                           ([NivelId]
+                           ,[OportunidadeId])
+                     VALUES
+                           (@NivelId
+                           ,@OportunidadeId)
+                            ";
+
+            var con = new SqlConnection(_connectionString);
+            con.Open();
+            con.Execute(query, oportunidadeNivel);
+        }
+
+        public void DeletarByOportunidade(int OportunidadeId)
+        {
+            string query = @"
+                            DELETE FROM OportunidadeNivel
+                            WHERE OportunidadeId = @OportunidadeId
+                ";
+
+            var con = new SqlConnection(_connectionString);
+            con.Open();
+            con.Execute(query, new { OportunidadeId });
+        }
+    }
+}
