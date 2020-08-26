@@ -1,10 +1,12 @@
 ﻿using Erecruta.Domain;
 using Erecruta.Interface;
 using Erecruta.Service;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace Erecruta.Controller
@@ -18,27 +20,60 @@ namespace Erecruta.Controller
         
         [HttpPost("incluir")]
 
-        public int Incluir(Oportunidade oportunidade)
+        public IActionResult Incluir(Oportunidade oportunidade)
         {
-            return _oportunidadeService.Incluir(oportunidade);
+
+            try
+            {
+                var resultado = _oportunidadeService.Incluir(oportunidade);
+                return new ObjectResult(resultado) { StatusCode = StatusCodes.Status200OK };
+            }
+            catch (Exception)
+            {
+                return new ObjectResult(new { }) { StatusCode = StatusCodes.Status500InternalServerError };
+            }
         }
 
         [HttpPut("alterar")]
-        public void Alterar(Oportunidade oportunidade)
+        public IActionResult Alterar(Oportunidade oportunidade)
         {
-            _oportunidadeService.Alterar(oportunidade);
+            try
+            {
+                _oportunidadeService.Alterar(oportunidade);
+                return new ObjectResult(new { }) { StatusCode = StatusCodes.Status200OK };
+            }
+            catch (Exception)
+            {
+                return new ObjectResult(new { }) { StatusCode = StatusCodes.Status500InternalServerError };
+            }
         }
 
         [HttpGet("listar")]
-        public List<Oportunidade> Listar()
+        public IActionResult Listar()
         {
-            return _oportunidadeService.Listar();
+            try
+            {
+                var resultado = _oportunidadeService.Listar();
+                return new ObjectResult(resultado) { StatusCode = StatusCodes.Status200OK };
+            }
+            catch (Exception)
+            {
+                return new ObjectResult(new { }) { StatusCode = StatusCodes.Status500InternalServerError };
+            }
         }
 
         [HttpGet("obter")]
-        public Oportunidade Obter(int id)
+        public IActionResult Obter(int id)
         {
-            return _oportunidadeService.Obter(id);
+            try
+            {
+                var resultado = _oportunidadeService.Obter(id);
+                return new ObjectResult(resultado) { StatusCode = StatusCodes.Status200OK };
+            }
+            catch (Exception)
+            {
+                return new ObjectResult(new { }) { StatusCode = StatusCodes.Status500InternalServerError };
+            }
         }
     }
 }
