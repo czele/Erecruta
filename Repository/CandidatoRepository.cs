@@ -5,10 +5,11 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
+using Erecruta.Interface;
 
 namespace Erecruta.Repository
 {
-    public class CandidatoRepository : BaseRepository
+    public class CandidatoRepository : BaseRepository, ICandidatoRepository
     {
         
         public int Incluir(Candidato candidato)

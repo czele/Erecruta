@@ -5,10 +5,11 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
+using Erecruta.Interface;
 
 namespace Erecruta.Repository
 {
-    public class NivelRepository : BaseRepository
+    public class NivelRepository : BaseRepository, INivelRepository
     {
         public List<Nivel> ListarByOportunidade(int OportunidadeId)
         {

@@ -1,4 +1,5 @@
 ﻿using Erecruta.Domain;
+using Erecruta.Interface;
 using Erecruta.Repository;
 using System;
 using System.Collections.Generic;
@@ -7,9 +8,10 @@ using System.Threading.Tasks;
 
 namespace Erecruta.Service
 {
-    public class CandidatoService
+    public class CandidatoService : ICandidatoService
     {
-        private CandidatoRepository _candidatoRepository = new CandidatoRepository();
+        private ICandidatoRepository _candidatoRepository;
+        public CandidatoService(ICandidatoRepository candidatoRepository) => _candidatoRepository = candidatoRepository;
 
         public int Incluir(Candidato candidato)
         {

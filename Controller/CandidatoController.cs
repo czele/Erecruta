@@ -1,4 +1,5 @@
 ﻿using Erecruta.Domain;
+using Erecruta.Interface;
 using Erecruta.Service;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,7 +12,8 @@ namespace Erecruta.Controller
     [Route("[controller]")]
     public class CandidatoController : ControllerBase
     {
-        private CandidatoService _candidatoService = new CandidatoService();
+        private ICandidatoService _candidatoService;
+        public CandidatoController(ICandidatoService candidatoService) => _candidatoService = candidatoService;
 
         [HttpPost("incluir")]
         public int Incluir(Candidato candidato)

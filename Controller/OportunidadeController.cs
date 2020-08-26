@@ -1,4 +1,5 @@
 ﻿using Erecruta.Domain;
+using Erecruta.Interface;
 using Erecruta.Service;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,7 +12,10 @@ namespace Erecruta.Controller
     [Route("[controller]")]
     public class OportunidadeController : ControllerBase
     {
-        private OportunidadeService _oportunidadeService = new OportunidadeService();
+        private IOportunidadeService _oportunidadeService;
+        public OportunidadeController(IOportunidadeService oportunidadeService) => _oportunidadeService = oportunidadeService;
+        
+        
         [HttpPost("incluir")]
 
         public int Incluir(Oportunidade oportunidade)

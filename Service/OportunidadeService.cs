@@ -1,4 +1,5 @@
 ﻿using Erecruta.Domain;
+using Erecruta.Interface;
 using Erecruta.Repository;
 using System;
 using System.Collections.Generic;
@@ -7,11 +8,18 @@ using System.Threading.Tasks;
 
 namespace Erecruta.Service
 {
-    public class OportunidadeService
+    public class OportunidadeService : IOportunidadeService
     {
-        private OportunidadeRepository _oportunidadeRepository = new OportunidadeRepository();
+        private IOportunidadeRepository _oportunidadeRepository;
+        public OportunidadeService(IOportunidadeRepository oportunidadeRepository) => _oportunidadeRepository = oportunidadeRepository;
         public int Incluir(Oportunidade oportunidade)
         {
+            if (oportunidade.Titulo == "")
+                return 0;
+
+            if (oportunidade.Empresa == "")
+                return 0;
+
             return _oportunidadeRepository.Incluir(oportunidade);
         }
 
