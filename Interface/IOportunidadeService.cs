@@ -1,4 +1,5 @@
 ﻿using Erecruta.Domain;
+using Erecruta.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,10 +9,10 @@ namespace Erecruta.Interface
 {
     public interface IOportunidadeService
     {
-        public int Incluir(Oportunidade oportunidade);
+        public ListResponse Incluir(Oportunidade oportunidade);
         public void Alterar(Oportunidade oportunidade);
-        public List<Oportunidade> Listar();
-        public Oportunidade Obter(int Id);
+        public ListaOportunidadeResponse Listar();
+        public OportunidadeResponse Obter(int Id);
 
     }
 }

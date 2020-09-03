@@ -20,13 +20,13 @@ namespace Erecruta.Controller
         
         [HttpPost("incluir")]
 
-        public IActionResult Incluir(Oportunidade oportunidade)
+        public IActionResult Incluir([FromBody]Oportunidade oportunidade)
         {
 
             try
             {
                 var resultado = _oportunidadeService.Incluir(oportunidade);
-                return new ObjectResult(resultado) { StatusCode = StatusCodes.Status200OK };
+                return new ObjectResult(resultado) { StatusCode = resultado.SatatusCode };
             }
             catch (Exception)
             {
@@ -54,7 +54,7 @@ namespace Erecruta.Controller
             try
             {
                 var resultado = _oportunidadeService.Listar();
-                return new ObjectResult(resultado) { StatusCode = StatusCodes.Status200OK };
+                return new ObjectResult(resultado) { StatusCode = resultado.SatatusCode };
             }
             catch (Exception)
             {
@@ -68,7 +68,7 @@ namespace Erecruta.Controller
             try
             {
                 var resultado = _oportunidadeService.Obter(id);
-                return new ObjectResult(resultado) { StatusCode = StatusCodes.Status200OK };
+                return new ObjectResult(resultado) { StatusCode = resultado.SatatusCode };
             }
             catch (Exception)
             {

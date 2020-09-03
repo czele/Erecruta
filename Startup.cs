@@ -28,6 +28,7 @@ namespace Erecruta
         {
             services.AddControllers();
             services.ConfigurarDependencias();
+            services.ConfigurarSwagger();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,6 +42,8 @@ namespace Erecruta
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UtilizarConfiguracaoSwagger();
 
             app.UseAuthorization();
 

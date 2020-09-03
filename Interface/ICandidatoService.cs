@@ -1,4 +1,5 @@
 ﻿using Erecruta.Domain;
+using Erecruta.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace Erecruta.Interface
     {
         public int Incluir(Candidato candidato);
         public void Alterar(Candidato candidato);
-        public List<Candidato> Listar(int oportunidadeId);
-        public Candidato Obter(int id);
+        public ListaCandidatoResponse Listar(int oportunidadeId);
+        public CandidatoResponse Obter(int id);
     }
 }

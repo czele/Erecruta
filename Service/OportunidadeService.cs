@@ -1,6 +1,8 @@
 ﻿using Erecruta.Domain;
 using Erecruta.Interface;
+using Erecruta.Model;
 using Erecruta.Repository;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,29 +14,59 @@ namespace Erecruta.Service
     {
         private IOportunidadeRepository _oportunidadeRepository;
         public OportunidadeService(IOportunidadeRepository oportunidadeRepository) => _oportunidadeRepository = oportunidadeRepository;
-        public int Incluir(Oportunidade oportunidade)
+        public ListResponse Incluir(Oportunidade oportunidade)
         {
+            var listResponse = new List<string>();
+
             if (oportunidade.Titulo == "")
-                return 0;
+                listResponse.Add("Título não preenchido");
 
             if (oportunidade.Empresa == "")
-                return 0;
+                listResponse.Add("Empresa não preenchida");
 
-            return _oportunidadeRepository.Incluir(oportunidade);
+            if (oportunidade.EstadoId == 0)
+                listResponse.Add("Estado não preenchido");
+
+            if (oportunidade.CidadeId == 0)
+                listResponse.Add("Cidade não preenchida");
+
+            if (oportunidade.Regime == "")
+                listResponse.Add("Regime de contratação não preenchido");
+
+            if (oportunidade.Posicao == "")
+                listResponse.Add("Posição não preenchida");
+
+            if (oportunidade.JobDescription == "")
+                listResponse.Add("Job description não preenchido");
+
+            if (listResponse.Count > 0)
+                return new ListResponse()
+                {
+                    Mensagem = "Bad Request",
+                    SatatusCode = StatusCodes.Status400BadRequest,
+                    Erros = listResponse
+                };
+
+            oportunidade.DataHoraCriacao = DateTime.Now;
+            oportunidade.Id = _oportunidadeRepository.Incluir(oportunidade);
+
+            return new ListResponse() { SatatusCode = StatusCodes.Status201Created, Mensagem = "Oportunidade incluida com sucesso." };
         }
 
         public void Alterar(Oportunidade oportunidade)
         {
             _oportunidadeRepository.Alterar(oportunidade);
         }
-        public List<Oportunidade> Listar()
+        public ListaOportunidadeResponse Listar()
         {
-            return _oportunidadeRepository.Listar();
+            var lista = _oportunidadeRepository.Listar();
+            return new ListaOportunidadeResponse() { Oportunidades = lista, SatatusCode = StatusCodes.Status200OK };
         }
 
-        public Oportunidade Obter(int Id)
+        public OportunidadeResponse Obter(int Id)
         {
-            return _oportunidadeRepository.Obter(Id);
+            var response = _oportunidadeRepository.Obter(Id);
+            return new OportunidadeResponse() { Oportunidade = response, SatatusCode = StatusCodes.Status200OK, Mensagem = "Dados obtidos com sucesso." };
         }
     }
 }

@@ -50,7 +50,7 @@ namespace Erecruta.Controller
             try
             {
                 var resultado = _candidatoService.Listar(oportunidadeId);
-                return new ObjectResult(resultado) { StatusCode = StatusCodes.Status200OK };
+                return new ObjectResult(resultado) { StatusCode = resultado.SatatusCode };
             }
             catch (Exception)
             {
@@ -64,7 +64,7 @@ namespace Erecruta.Controller
             try
             {
                 var resultado = _candidatoService.Obter(id);
-                return new ObjectResult(resultado) { StatusCode = StatusCodes.Status200OK };
+                return new ObjectResult(resultado) { StatusCode = resultado.SatatusCode };
             }
             catch (Exception)
             {

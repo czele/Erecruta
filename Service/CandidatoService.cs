@@ -1,6 +1,8 @@
 ﻿using Erecruta.Domain;
 using Erecruta.Interface;
+using Erecruta.Model;
 using Erecruta.Repository;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,14 +24,16 @@ namespace Erecruta.Service
         {
             _candidatoRepository.Alterar(candidato);
         }
-        public List<Candidato> Listar(int oportunidadeId)
+        public ListaCandidatoResponse Listar(int oportunidadeId)
         {
-            return _candidatoRepository.Listar(oportunidadeId);
+            var lista = _candidatoRepository.Listar(oportunidadeId);
+            return new ListaCandidatoResponse() { Candidatos = lista, SatatusCode = StatusCodes.Status200OK };
         }
 
-        public Candidato Obter(int id)
+        public CandidatoResponse Obter(int id)
         {
-            return _candidatoRepository.Obter(id);
+            var response = _candidatoRepository.Obter(id);
+            return new CandidatoResponse() { Candidato = response, SatatusCode = StatusCodes.Status200OK };
         }
     }
 }
