@@ -17,7 +17,7 @@ namespace Erecruta.Controller
         public CandidatoController(ICandidatoService candidatoService) => _candidatoService = candidatoService;
 
         [HttpPost("incluir")]
-        public IActionResult Incluir(Candidato candidato)
+        public IActionResult Incluir([FromBody] Candidato candidato)
         {
             try
             {
@@ -31,7 +31,7 @@ namespace Erecruta.Controller
         }
 
         [HttpPut("alterar")]
-        public IActionResult Alterar(Candidato candidato)
+        public IActionResult Alterar([FromBody] Candidato candidato)
         {
             try
             {
@@ -45,7 +45,7 @@ namespace Erecruta.Controller
         }
 
         [HttpGet("listar")]
-        public IActionResult Listar(int oportunidadeId)
+        public IActionResult Listar([FromQuery] int oportunidadeId)
         {
             try
             {
@@ -59,7 +59,7 @@ namespace Erecruta.Controller
         }
 
         [HttpGet("obter")]
-        public IActionResult Obter(int id)
+        public IActionResult Obter([FromQuery] int id)
         {
             try
             {
