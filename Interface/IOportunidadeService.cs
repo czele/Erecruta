@@ -10,7 +10,7 @@ namespace Erecruta.Interface
     public interface IOportunidadeService
     {
         public ListResponse Incluir(Oportunidade oportunidade);
-        public void Alterar(Oportunidade oportunidade);
+        public ListResponse Alterar(Oportunidade oportunidade);
         public ListaOportunidadeResponse Listar();
         public OportunidadeResponse Obter(int Id);
 

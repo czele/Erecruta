@@ -8,7 +8,7 @@ namespace Erecruta.Model
 {
     public class BaseResponse
     {
-        public int SatatusCode { get; set; }
+        public int StatusCode { get; set; }
         public string Mensagem { get; set; }
     }
 }

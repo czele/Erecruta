@@ -27,13 +27,13 @@ namespace Erecruta.Service
         public ListaCandidatoResponse Listar(int oportunidadeId)
         {
             var lista = _candidatoRepository.Listar(oportunidadeId);
-            return new ListaCandidatoResponse() { Candidatos = lista, SatatusCode = StatusCodes.Status200OK };
+            return new ListaCandidatoResponse() { Candidatos = lista, StatusCode = StatusCodes.Status200OK };
         }
 
         public CandidatoResponse Obter(int id)
         {
             var response = _candidatoRepository.Obter(id);
-            return new CandidatoResponse() { Candidato = response, SatatusCode = StatusCodes.Status200OK };
+            return new CandidatoResponse() { Candidato = response, StatusCode = StatusCodes.Status200OK };
         }
     }
 }

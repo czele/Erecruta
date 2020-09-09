@@ -19,5 +19,7 @@ namespace Erecruta.Domain
         public string Posicao { get; set; }
         public string JobDescription { get; set; }
         public bool Situacao { get; set; }
+        public List<Nivel> Niveis { get; set; }
+        public string Duracao { get; set; }
     }
 }

@@ -26,7 +26,7 @@ namespace Erecruta.Controller
             try
             {
                 var resultado = _oportunidadeService.Incluir(oportunidade);
-                return new ObjectResult(resultado) { StatusCode = resultado.SatatusCode };
+                return new ObjectResult(resultado) { StatusCode = resultado.StatusCode };
             }
             catch (Exception)
             {
@@ -39,8 +39,8 @@ namespace Erecruta.Controller
         {
             try
             {
-                _oportunidadeService.Alterar(oportunidade);
-                return new ObjectResult(new { }) { StatusCode = StatusCodes.Status200OK };
+                var resultado = _oportunidadeService.Alterar(oportunidade);
+                return new ObjectResult(resultado) { StatusCode = StatusCodes.Status200OK };
             }
             catch (Exception)
             {
@@ -54,7 +54,7 @@ namespace Erecruta.Controller
             try
             {
                 var resultado = _oportunidadeService.Listar();
-                return new ObjectResult(resultado) { StatusCode = resultado.SatatusCode };
+                return new ObjectResult(resultado) { StatusCode = resultado.StatusCode };
             }
             catch (Exception)
             {
@@ -68,7 +68,7 @@ namespace Erecruta.Controller
             try
             {
                 var resultado = _oportunidadeService.Obter(id);
-                return new ObjectResult(resultado) { StatusCode = resultado.SatatusCode };
+                return new ObjectResult(resultado) { StatusCode = resultado.StatusCode };
             }
             catch (Exception)
             {
