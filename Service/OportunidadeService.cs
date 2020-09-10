@@ -102,6 +102,18 @@ namespace Erecruta.Service
         public ListaOportunidadeResponse Listar()
         {
             var lista = _oportunidadeRepository.Listar();
+
+            if (lista.Count == 0)
+                return new ListaOportunidadeResponse() { StatusCode = StatusCodes.Status404NotFound};
+
+            lista.ForEach(o => {
+
+                o.Niveis = _nivelRepository.ListarByOportunidade(o.Id);
+                TimeSpan timeSpan = (DateTime.Now - o.DataHoraCriacao);
+                o.Duracao = timeSpan.RelativeTime();
+
+            });
+
             return new ListaOportunidadeResponse() { Oportunidades = lista, StatusCode = StatusCodes.Status200OK };
         }
 
@@ -112,7 +124,6 @@ namespace Erecruta.Service
             if (response != null)
             {
                 response.Niveis = _nivelRepository.ListarByOportunidade(id);
-
                 TimeSpan timeSpan = (DateTime.Now - response.DataHoraCriacao);
                 response.Duracao = timeSpan.RelativeTime();
                 return new OportunidadeResponse() { Oportunidade = response, StatusCode = StatusCodes.Status200OK, Mensagem = "Dados obtidos com sucesso." };

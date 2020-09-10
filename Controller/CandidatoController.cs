@@ -35,8 +35,8 @@ namespace Erecruta.Controller
         {
             try
             {
-                _candidatoService.Alterar(candidato);
-                return new ObjectResult(new { }) { StatusCode = StatusCodes.Status200OK };
+                var resultado = _candidatoService.Alterar(candidato);
+                return new ObjectResult(resultado) { StatusCode = StatusCodes.Status200OK };
             }
             catch (Exception)
             {
