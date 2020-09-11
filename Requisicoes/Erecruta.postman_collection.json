@@ -1,0 +1,82 @@
+{
+	"info": {
+		"_postman_id": "ef10fa45-138c-4116-b97b-be1465c31f02",
+		"name": "Erecruta",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "OportunidadeListar",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44340/oportunidade/listar",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44340",
+					"path": [
+						"oportunidade",
+						"listar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CandidatoListar",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44340/candidato/listar?oportunidadeId=1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44340",
+					"path": [
+						"candidato",
+						"listar"
+					],
+					"query": [
+						{
+							"key": "oportunidadeId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OportunidadeObter",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44340/oportunidade/obter?id=2",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44340",
+					"path": [
+						"oportunidade",
+						"obter"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
