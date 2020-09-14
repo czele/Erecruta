@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace Erecruta.Commons
 {
-    public static class RelativeTimeExtensions
-    {
+	public static class RelativeTimeExtensions
+	{
 		public static String RelativeTime(this TimeSpan ts)
 		{
 			const int second = 1;
@@ -34,4 +34,5 @@ namespace Erecruta.Commons
 				return "Há " + (years <= 1 ? "um ano" : years + " anos");
 			}
 		}
+	}
 }

@@ -21,5 +21,7 @@ namespace Erecruta.Domain
         public bool Situacao { get; set; }
         public List<Nivel> Niveis { get; set; }
         public string Duracao { get; set; }
+        public Estado Estado { get; set; }
+        public Cidade Cidade { get; set; }
     }
 }

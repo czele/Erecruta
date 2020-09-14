@@ -4,6 +4,7 @@ using Erecruta.Interface;
 using Erecruta.Model;
 using Erecruta.Repository;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.ResponseCaching;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,11 +15,13 @@ namespace Erecruta.Service
     public class OportunidadeService : IOportunidadeService
     {
         private IOportunidadeRepository _oportunidadeRepository;
-        public INivelRepository _nivelRepository;
-        public OportunidadeService(IOportunidadeRepository oportunidadeRepository, INivelRepository nivelRepository)
+        private INivelRepository _nivelRepository;
+        private IIBGERepository _iBGERepository;
+        public OportunidadeService(IOportunidadeRepository oportunidadeRepository, INivelRepository nivelRepository, IIBGERepository iBGERepository)
         {
             _oportunidadeRepository = oportunidadeRepository;
             _nivelRepository = nivelRepository;
+            _iBGERepository = iBGERepository;
         }
 
         public ListResponse Incluir(Oportunidade oportunidade)
@@ -111,6 +114,8 @@ namespace Erecruta.Service
                 o.Niveis = _nivelRepository.ListarByOportunidade(o.Id);
                 TimeSpan timeSpan = (DateTime.Now - o.DataHoraCriacao);
                 o.Duracao = timeSpan.RelativeTime();
+                o.Estado = _iBGERepository.ObterEstado(o.EstadoId);
+                o.Cidade = _iBGERepository.ObterCidade(o.CidadeId);
 
             });
 
@@ -126,6 +131,8 @@ namespace Erecruta.Service
                 response.Niveis = _nivelRepository.ListarByOportunidade(id);
                 TimeSpan timeSpan = (DateTime.Now - response.DataHoraCriacao);
                 response.Duracao = timeSpan.RelativeTime();
+                response.Estado = _iBGERepository.ObterEstado(response.EstadoId);
+                response.Cidade = _iBGERepository.ObterCidade(response.CidadeId);
                 return new OportunidadeResponse() { Oportunidade = response, StatusCode = StatusCodes.Status200OK, Mensagem = "Dados obtidos com sucesso." };
             }
             else

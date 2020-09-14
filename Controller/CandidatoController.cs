@@ -22,7 +22,7 @@ namespace Erecruta.Controller
             try
             {
                 var resultado = _candidatoService.Incluir(candidato);
-                return new ObjectResult(resultado) { StatusCode = StatusCodes.Status200OK };
+                return new ObjectResult(resultado) { StatusCode = resultado.StatusCode };
             }
             catch (Exception)
             {
@@ -36,7 +36,7 @@ namespace Erecruta.Controller
             try
             {
                 var resultado = _candidatoService.Alterar(candidato);
-                return new ObjectResult(resultado) { StatusCode = StatusCodes.Status200OK };
+                return new ObjectResult(resultado) { StatusCode = resultado.StatusCode };
             }
             catch (Exception)
             {

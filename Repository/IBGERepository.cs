@@ -11,7 +11,7 @@ namespace Erecruta.Repository
 {
     public class IBGERepository : IIBGERepository
     {
-        public List<Estado> ListaEstado()
+        public List<Estado> ListarEstado()
         {
             var client = new RestClient("https://servicodados.ibge.gov.br/api/v1/localidades/estados");
             var request = new RestRequest(Method.GET);
@@ -23,7 +23,7 @@ namespace Erecruta.Repository
             return lista;
         }
 
-        public List<Cidade> ListaCidade(long estadoId)
+        public List<Cidade> ListarCidade(long estadoId)
         {
             var client = new RestClient($"https://servicodados.ibge.gov.br/api/v1/localidades/estados/{estadoId.ToString()}/municipios");
             var request = new RestRequest(Method.GET);
@@ -33,6 +33,30 @@ namespace Erecruta.Repository
             var lista = JsonConvert.DeserializeObject<List<Cidade>>(response.Content);
 
             return lista;
+        }
+
+        public Estado ObterEstado(long estadoId)
+        {
+            var client = new RestClient($"https://servicodados.ibge.gov.br/api/v1/localidades/estados/{estadoId.ToString()}");
+            var request = new RestRequest(Method.GET);
+            request.AddHeader("Content-Type", "application/json");
+            IRestResponse response = client.Execute(request);
+
+            var estado = JsonConvert.DeserializeObject<Estado>(response.Content);
+
+            return estado;
+        }
+
+        public Cidade ObterCidade(long cidadeId)
+        {
+            var client = new RestClient($"https://servicodados.ibge.gov.br/api/v1/localidades/municipios/{cidadeId}");
+            var request = new RestRequest(Method.GET);
+            request.AddHeader("Content-Type", "application/json");
+            IRestResponse response = client.Execute(request);
+
+            var cidade = JsonConvert.DeserializeObject<Cidade>(response.Content);
+
+            return cidade;
         }
     }
 }

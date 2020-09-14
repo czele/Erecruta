@@ -12,7 +12,9 @@ namespace Erecruta.Service
         private IIBGERepository _iBGERepository;
 
         public IBGEService(IIBGERepository iBGERepository) => _iBGERepository = iBGERepository;
-        public List<Estado> ListaEstado() => _iBGERepository.ListaEstado();
-        public List<Cidade> ListaCidade(long estadoId) => _iBGERepository.ListaCidade(estadoId);
+        public List<Estado> ListarEstado() => _iBGERepository.ListarEstado();
+        public List<Cidade> ListarCidade(long estadoId) => _iBGERepository.ListarCidade(estadoId);
+        public Estado ObterEstado(long estadoId) => _iBGERepository.ObterEstado(estadoId);
+        public Cidade ObterCidade(long cidadeId) => _iBGERepository.ObterCidade(cidadeId);
     }
 }

@@ -21,5 +21,7 @@ namespace Erecruta.Domain
         public int SituacaoId { get; set; }
         public string Regiao { get; set; }
         public int OportunidadeId { get; set; }
+        public Estado Estado { get; set; }
+        public Cidade Cidade { get; set; }
     }
 }

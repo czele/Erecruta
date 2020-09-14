@@ -8,7 +8,9 @@ namespace Erecruta.Interface
 {
     public interface IIBGEService
     {
-        public List<Estado> ListaEstado();
-        public List<Cidade> ListaCidade(long estadoId);
+        public List<Estado> ListarEstado();
+        public List<Cidade> ListarCidade(long estadoId);
+        public Estado ObterEstado(long estadoId);
+        public Cidade ObterCidade(long cidadeId);
     }
 }
